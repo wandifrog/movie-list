@@ -73,7 +73,7 @@ const MovieList = (): JSX.Element => {
 
   const _handleOnScroll = async(el: React.UIEvent<HTMLDivElement>) => {
     const { offsetHeight, scrollTop, scrollHeight } = el.currentTarget
-    if (scrollTop >= scrollHeight - offsetHeight) {
+    if (scrollTop + 100 >= scrollHeight - offsetHeight) {
       const page = Math.ceil(movies.length / 10) + 1
       const result = await _getMovies(searchValue, page)
       setMovies([...movies, ...result])
@@ -147,7 +147,7 @@ const MovieList = (): JSX.Element => {
 const Content = styled.div`
   height: calc(100% - 137px);
   overflow: scroll;
-  padding: 0 12px 12px;
+  padding: 0 12px 120px;
   -ms-overflow-style: none;  /* IE and Edge scrollbar */
   scrollbar-width: none;  /* Firefox scrollbar */
 
