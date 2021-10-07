@@ -107,7 +107,7 @@ const MovieList = (): JSX.Element => {
           value={searchValue}
           color={colors.text}
         />
-        <button onClick={() => _handleSearch()}>search</button>
+        <button onClick={() => _handleSearch()}>{t.movieList.search}</button>
       </HStack>
       <AutoCompleteContainer color={colors.background}>
         {

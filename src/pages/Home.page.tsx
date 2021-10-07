@@ -10,23 +10,23 @@ const Home = (): JSX.Element => {
   const [state, dispatch] = useApp()
   const { t, language } = useTranslation()
 
-  function _changeTheme() {
+  const _changeTheme = () => {
     dispatch({ type: 'CHANGE_THEME' })
   }
 
-  function _changeLanguage() {
+  const _changeLanguage = () => {
     dispatch({ type: 'CHANGE_LANGUAGE' })
   }
 
-  function _goToStockCalculator() {
+  const _goToStockCalculator = () => {
     window.open('https://wandifrog.netlify.app/', '_blank')
   }
 
-  function _goToGithub() {
+  const _goToGithub = () => {
     window.open('https://github.com/wandifrog', '_blank')
   }
 
-  function _goToLinkedIn() {
+  const _goToLinkedIn = () => {
     window.open('https://www.linkedin.com/in/wandi-wandi/', '_blank')
   }
 

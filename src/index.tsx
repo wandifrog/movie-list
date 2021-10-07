@@ -12,7 +12,6 @@ const reportWebVitals = (onPerfEntry?: ReportHandler) => {
       getLCP(onPerfEntry)
       getTTFB(onPerfEntry)
     })
-  
 }
 
 ReactDOM.render(

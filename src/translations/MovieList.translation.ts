@@ -12,10 +12,14 @@ const movieListTranslation = {
      * - ID: Memuat...
      */
     loading: 'Memuat...',
+    /**
+     * - ID: Cari
+     */
+    search: 'Cari',
   },
   en: {
     /**
-     * - EN: Tutup
+     * - EN: Close
      */
     close: 'Close',
     /**
@@ -26,6 +30,10 @@ const movieListTranslation = {
      * - EN: Loading...
      */
     loading: 'Loading...',
+    /**
+     * - EN: Search
+     */
+    search: 'Search',
   },
 }
 
