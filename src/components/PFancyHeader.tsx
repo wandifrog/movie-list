@@ -5,7 +5,7 @@ import useApp from '../hooks/App.hook'
 import useTheme from '../hooks/Theme.hook'
 
 const outsideState = {
-  activeIndex: -3
+  activeIndex: -3,
 }
 
 /**
@@ -21,7 +21,7 @@ const PFancyHeader = (): JSX.Element => {
   
   React.useEffect(() => {
     setInterval(() => {
-      if (outsideState.activeIndex < 6) {
+      if (outsideState.activeIndex < 8) {
         outsideState.activeIndex++
         setActiveIndex(outsideState.activeIndex)
       } else {
@@ -33,13 +33,16 @@ const PFancyHeader = (): JSX.Element => {
 
   return (
     <FancyHeader color={colors.text} darkMode={state.darkMode}>
-      <span style={{ color: ([-3, -1, 0].includes(activeIndex)) ? colors.fancyHeaderActive : colors.fancyHeader }}>P</span>
-      <span style={{ color: ([-3, -1, 1].includes(activeIndex)) ? colors.fancyHeaderActive : colors.fancyHeader }}>O</span>
-      <span style={{ color: ([-3, -1, 2].includes(activeIndex)) ? colors.fancyHeaderActive : colors.fancyHeader }}>K</span>
-      <span style={{ color: ([-3, -1, 3].includes(activeIndex)) ? colors.fancyHeaderActive : colors.fancyHeader }}>E</span>
-      <span style={{ color: ([-3, -1, 4].includes(activeIndex)) ? colors.fancyHeaderActive : colors.fancyHeader }}>M</span>
-      <span style={{ color: ([-3, -1, 5].includes(activeIndex)) ? colors.fancyHeaderActive : colors.fancyHeader }}>O</span>
-      <span style={{ color: ([-3, -1, 6].includes(activeIndex)) ? colors.fancyHeaderActive : colors.fancyHeader }}>N</span>
+      <span style={{ color: ([-3, -1, 0].includes(activeIndex)) ? colors.fancyHeaderActive : colors.fancyHeader }}>M</span>
+      <span style={{ color: ([-3, -1, 1].includes(activeIndex)) ? colors.fancyHeaderActive : colors.fancyHeader }}>o</span>
+      <span style={{ color: ([-3, -1, 2].includes(activeIndex)) ? colors.fancyHeaderActive : colors.fancyHeader }}>v</span>
+      <span style={{ color: ([-3, -1, 3].includes(activeIndex)) ? colors.fancyHeaderActive : colors.fancyHeader }}>i</span>
+      <span style={{ color: ([-3, -1, 4].includes(activeIndex)) ? colors.fancyHeaderActive : colors.fancyHeader }}>e</span>
+      <span style={{ color: ([-3, -1, 5].includes(activeIndex)) ? colors.fancyHeaderActive : colors.fancyHeader }}> </span>
+      <span style={{ color: ([-3, -1, 5].includes(activeIndex)) ? colors.fancyHeaderActive : colors.fancyHeader }}>L</span>
+      <span style={{ color: ([-3, -1, 6].includes(activeIndex)) ? colors.fancyHeaderActive : colors.fancyHeader }}>i</span>
+      <span style={{ color: ([-3, -1, 7].includes(activeIndex)) ? colors.fancyHeaderActive : colors.fancyHeader }}>s</span>
+      <span style={{ color: ([-3, -1, 8].includes(activeIndex)) ? colors.fancyHeaderActive : colors.fancyHeader }}>t</span>
     </FancyHeader>
   )
 }

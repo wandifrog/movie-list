@@ -56,7 +56,7 @@ const VStack = ({
     marginTop: top,
     padding,
     width,
-    ...style
+    ...style,
   }
 
   return <Flex style={flexstyle} {...props}>{children}</Flex>

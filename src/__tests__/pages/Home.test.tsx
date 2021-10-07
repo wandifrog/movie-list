@@ -10,13 +10,13 @@ type MockingProviderProps = {
 
 const MockingProvider = ({
   darkMode = true,
-  language = 'id'
+  language = 'id',
 }: MockingProviderProps) => {
 
   const initialState: AppState = {
     darkMode,
     language,
-    myPokemonList: []
+    myPokemonList: [],
   }
 
   const [state, dispatch] = React.useReducer(appReducer, initialState)

@@ -5,7 +5,7 @@ const appContextPersistJson: AppState | null = appContextPersist && JSON.parse(a
 const initialState = appContextPersistJson || {
   darkMode: true,
   language: 'en',
-  myPokemonList: []
+  myPokemonList: [],
 }
 
 const AppStateContext = React.createContext<AppState | undefined>(undefined)

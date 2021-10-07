@@ -1,6 +1,9 @@
-# WF React Boilerplate (gatcha pokemon template)
+# Movie List
 
-notes: need to recreate template
+## Step to run this application
+1. Clone this repository
+2. npm install OR yarn
+3. npm run start OR yarn start
 
 ## Features
 * React hooks

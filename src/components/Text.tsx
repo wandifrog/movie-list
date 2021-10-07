@@ -73,7 +73,7 @@ const Text = ({
     marginRight: right,
     marginBottom: bottom,
     marginLeft: left,
-    userSelect: onClick ? 'none' : 'initial'
+    userSelect: onClick ? 'none' : 'initial',
   }
 
   return React.createElement(
@@ -81,7 +81,7 @@ const Text = ({
     {
       style: textStyle,
       onClick: () => onClick && onClick(),
-      ...props
+      ...props,
     },
     children
   )

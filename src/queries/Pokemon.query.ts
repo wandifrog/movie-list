@@ -4,7 +4,7 @@ const pokeApi = 'https://graphql-pokeapi.vercel.app/api/graphql'
 
 const client = new ApolloClient({
   uri: pokeApi,
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
 })
 
 export function getPokemons(limit = 10, offset = 1): Promise<ApolloQueryResult<{ pokemons: Pokemons }>> {
@@ -26,7 +26,7 @@ export function getPokemons(limit = 10, offset = 1): Promise<ApolloQueryResult<{
             }
           }
         }
-      `
+      `,
     }).then((response) => {
       resolve(response)
     }).catch((error) => {
@@ -73,7 +73,7 @@ export function getPokemon(name = 'ditto'): Promise<ApolloQueryResult<{ pokemon:
         
           }
         }
-      `
+      `,
     }).then((response) => {
       resolve(response)
     }).catch((error) => {

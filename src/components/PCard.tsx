@@ -20,7 +20,7 @@ type PCardProps = {
  * <PCard pokemon={{ name: 'Pikachu', image: 'url image' }} />
  */
 const PCard = ({
-  pokemon
+  pokemon,
 }: PCardProps): JSX.Element => {
   
   const colors = useTheme()

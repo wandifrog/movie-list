@@ -3,15 +3,13 @@ import React from 'react'
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
 } from 'react-router-dom'
 import PBottomNavigation from './components/PBottomNavigation'
 import PFancyHeader from './components/PFancyHeader'
 import useTheme from './hooks/Theme.hook'
 import Home from './pages/Home.page'
-import MyPokemonList from './pages/MyPokemonList.page'
-import PokemonDetail from './pages/PokemonDetail.page'
-import PokemonList from './pages/PokemonList.page'
+import MovieList from './pages/MovieList.page'
 
 type ContainerProps = {
   background: string
@@ -25,14 +23,8 @@ const AppRoutes = (): JSX.Element => {
       <Container background={colors.background}>
         <PFancyHeader />
         <Switch>
-          <Route path="/profile">
-            <MyPokemonList />
-          </Route>
-          <Route path="/pokemon" exact>
-            <PokemonList />
-          </Route>
-          <Route path="/pokemon/:pokemonName">
-            <PokemonDetail />
+          <Route path="/movies" exact>
+            <MovieList />
           </Route>
           <Route path="/">
             <Home />

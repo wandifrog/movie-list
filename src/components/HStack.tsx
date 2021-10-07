@@ -56,7 +56,7 @@ const HStack = ({
     marginTop: top,
     padding,
     width,
-    ...style
+    ...style,
   }
 
   return <Flex style={flexstyle} {...props}>{children}</Flex>

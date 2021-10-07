@@ -26,10 +26,7 @@ const PBottomNavigation = (): JSX.Element => {
         <Link to="/">{language === 'id' ? 'Beranda' : 'Home'}</Link>
       </NavItem>
       <NavItem color={colors.text}>
-        <Link to="/pokemon">{language === 'id' ? 'Daftar' : 'Lists'}</Link>
-      </NavItem>
-      <NavItem color={colors.text}>
-        <Link to="/profile">{language === 'id' ? 'Profil' : 'Profile'}</Link>
+        <Link to="/movies">{language === 'id' ? 'Daftar Film' : 'Movies'}</Link>
       </NavItem>
     </Container>
   )
