@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import PFlex from '../components/PFlex'
-import PText from '../components/PText'
+import Text from '../components/Text'
 import { fontFamily, fontSize } from '../constants/Fonts.constant'
 import useApp from '../hooks/App.hook'
 import useTranslation from '../hooks/Translation.hook'
+import HStack from '../components/HStack'
 
 const Home = (): JSX.Element => {
   const [state, dispatch] = useApp()
@@ -33,27 +33,27 @@ const Home = (): JSX.Element => {
   return (
     <React.Fragment>
       <Content>
-        <PText top="60px" size={fontSize.normal} center
+        <Text top="60px" size={fontSize.normal} center
           onClick={() => _changeLanguage()}>
           {t.home.bilingualButton}
-          <PText left="5px" size={fontSize.small} span font={fontFamily.pokemonSolid}>
+          <Text left="5px" size={fontSize.small} span font={fontFamily.pokemonSolid}>
             {language === 'id' ? 'English' : 'Bahasa'}
-          </PText>
-        </PText>
-        <PText top="30px" size={fontSize.normal} center
+          </Text>
+        </Text>
+        <Text top="30px" size={fontSize.normal} center
           onClick={() => _changeTheme()}>
           {t.home.themeButton}
-          <PText left="5px" size={fontSize.small} span font={fontFamily.pokemonSolid}>
+          <Text left="5px" size={fontSize.small} span font={fontFamily.pokemonSolid}>
             {state.darkMode ? t.home.lightTheme : t.home.darkTheme}
-          </PText>
-        </PText>
+          </Text>
+        </Text>
         <BottomInformation>
-          <PFlex bottom="5px" justify="center" align="center">
-            <PText size={fontSize.small} onClick={() => _goToGithub()}>Github</PText>
-            <PText right="4px" left="4px">|</PText>
-            <PText size={fontSize.small} onClick={() => _goToLinkedIn()}>LinkedIn</PText>
-          </PFlex>
-          <PText bold italic center onClick={() => _goToStockCalculator()}>#StockCalculator</PText>
+          <HStack bottom="5px" justify="center" align="center">
+            <Text size={fontSize.small} onClick={() => _goToGithub()}>Github</Text>
+            <Text right="4px" left="4px">|</Text>
+            <Text size={fontSize.small} onClick={() => _goToLinkedIn()}>LinkedIn</Text>
+          </HStack>
+          <Text bold italic center onClick={() => _goToStockCalculator()}>#StockCalculator</Text>
         </BottomInformation>
       </Content>
     </React.Fragment>

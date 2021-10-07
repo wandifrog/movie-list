@@ -5,7 +5,7 @@ import useTheme from '../hooks/Theme.hook'
 import useTranslation from '../hooks/Translation.hook'
 import HStack from '../components/HStack'
 import PModal from '../components/PModal'
-import PText from '../components/PText'
+import Text from '../components/Text'
 
 const outsideState = {
   modalImage: '',
@@ -91,14 +91,14 @@ const MovieList = (): JSX.Element => {
     <Content onScroll={(el) => _handleOnScroll(el)}>
       <PModal visible={showModal}>
         <MovieImage src={outsideState.modalImage} />
-        <PText
+        <Text
           top="15px"
           font={fontFamily.pokemonSolid}
           center
           onClick={() => setShowModal(false)}
         >
           {t.movieList.close}
-        </PText>
+        </Text>
       </PModal>
       <HStack>
         <PokemonNameInput
@@ -113,7 +113,7 @@ const MovieList = (): JSX.Element => {
         {
           suggestion.length !== 0 && suggestion.map((movie, index) =>
             (
-              <PText
+              <Text
                 key={index}
                 top="10px"
                 bottom="10px"
@@ -122,7 +122,7 @@ const MovieList = (): JSX.Element => {
                 onClick={() => _handleClickSuggestion(movie.Title)}
               >
                 {movie.Title}
-              </PText>
+              </Text>
             )
           )
         }
@@ -131,14 +131,14 @@ const MovieList = (): JSX.Element => {
         movies.map((movie, index) =>
           (
             <HStack top="50px" key={index} justify="space-between" onClick={() => _handleModal(movie.Poster)}>
-              <PText>{movie.Title}</PText>
-              <PText>{movie.Year}</PText>
+              <Text>{movie.Title}</Text>
+              <Text>{movie.Year}</Text>
             </HStack>
           )
         )
       }
       {
-        loading ? <PText top="20px" center>{t.movieList.loading}</PText> : null
+        loading ? <Text top="20px" center>{t.movieList.loading}</Text> : null
       }
     </Content>
   )
