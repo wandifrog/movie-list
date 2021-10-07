@@ -1,6 +1,6 @@
-import React, { WheelEvent } from 'react'
+import React from 'react'
 import styled from '@emotion/styled'
-import { fontSize } from '../constants/Fonts.constant'
+import { fontFamily, fontSize } from '../constants/Fonts.constant'
 import useTheme from '../hooks/Theme.hook'
 import useTranslation from '../hooks/Translation.hook'
 import HStack from '../components/HStack'
@@ -9,7 +9,6 @@ import PText from '../components/PText'
 
 const outsideState = {
   modalImage: '',
-  page: 1,
   typingTimeout: setTimeout(() => { }, 0),
 }
 
@@ -22,14 +21,6 @@ const MovieList = (): JSX.Element => {
   const [searchValue, setSearchValue] = React.useState('')
   const [showModal, setShowModal] = React.useState(false)
   const [suggestion, setSuggestion] = React.useState<Movie[]>([])
-
-  React.useEffect(() => { 
-    // component did mount
-
-    return () => { // component will unmount
-      outsideState.page = 1
-    }
-  }, [])
 
   const _getMovies = (query: string, page = 1): Promise<Movie[]> => {
     return new Promise((resolve, reject) => {
@@ -55,8 +46,8 @@ const MovieList = (): JSX.Element => {
       try {
         const result = await _getMovies(query)
         setSuggestion(result)
-      } catch (error) { 
-        alert(error) 
+      } catch (error) {
+        alert(error)
       }
     }, 700)
   }
@@ -81,25 +72,33 @@ const MovieList = (): JSX.Element => {
   }
 
   const _handleOnScroll = async(el: React.UIEvent<HTMLDivElement>) => {
-    setLoading(true)
     const { offsetHeight, scrollTop, scrollHeight } = el.currentTarget
-
-    if (scrollTop + 10 >= scrollHeight - offsetHeight) {
-      outsideState.page++
-      try {
-        const result = await _getMovies(searchValue, outsideState.page)
-        setMovies([...movies, ...result])
-      } catch (error) {
-        setLoading(false)
-        alert(error)
-      }
+    if (scrollTop >= scrollHeight - offsetHeight) {
+      const page = Math.ceil(movies.length / 10) + 1
+      const result = await _getMovies(searchValue, page)
+      setMovies([...movies, ...result])
     }
   }
+
+  const _handleModal = (image: string) => {
+    outsideState.modalImage = image
+    setShowModal(true)
+  }
+
+  console.log('movies', movies)
 
   return (
     <Content onScroll={(el) => _handleOnScroll(el)}>
       <PModal visible={showModal}>
-        <PText>test 123</PText>
+        <MovieImage src={outsideState.modalImage} />
+        <PText
+          top="15px"
+          font={fontFamily.pokemonSolid}
+          center
+          onClick={() => setShowModal(false)}
+        >
+          {t.movieList.close}
+        </PText>
       </PModal>
       <HStack>
         <PokemonNameInput
@@ -131,7 +130,7 @@ const MovieList = (): JSX.Element => {
       {
         movies.map((movie, index) =>
           (
-            <HStack top="50px" key={index} justify="space-between">
+            <HStack top="50px" key={index} justify="space-between" onClick={() => _handleModal(movie.Poster)}>
               <PText>{movie.Title}</PText>
               <PText>{movie.Year}</PText>
             </HStack>
@@ -180,6 +179,10 @@ const PokemonNameInput = styled.input`
     color: ${(props) => props.color};
     font-weight: bold;
   }
+`
+const MovieImage = styled.img`
+  width: 100%;
+  height: 100%;
 `
 
 export default MovieList

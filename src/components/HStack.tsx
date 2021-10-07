@@ -25,6 +25,10 @@ type HStackProps = ComponentMetrics & React.HTMLAttributes<HTMLDivElement> & {
    * Padding
    */
   padding?: CSS.Property.Padding
+  /**
+   * On click event
+   */
+   onClick?: () => void
 }
 
 /**
@@ -45,11 +49,13 @@ const HStack = ({
   padding,
   style,
   width,
+  onClick,
   ...props
 }: HStackProps): JSX.Element => {
 
   const flexstyle: React.CSSProperties = {
     alignItems: align,
+    cursor: onClick ? 'pointer' : 'initial',
     height,
     justifyContent: justify,
     marginBottom: bottom,
@@ -59,7 +65,7 @@ const HStack = ({
     ...style,
   }
 
-  return <Flex style={flexstyle} {...props}>{children}</Flex>
+  return <Flex style={flexstyle} onClick={() => onClick && onClick()} {...props}>{children}</Flex>
 }
 
 const Flex = styled.div`

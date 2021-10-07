@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, fireEvent } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import Home from '../../pages/Home.page'
 import { AppDispatchContext, AppStateContext, appReducer } from '../../contexts/App.context'
 
@@ -35,7 +35,7 @@ describe('Typo Checking', () => {
     const { getByText } = render(<MockingProvider />)
     getByText('Github')
     getByText('LinkedIn')
-    getByText('#MulaiAjaDulu')
+    getByText('#StockCalculator')
   })
 
   test('expect Indonesian translation is correct (Change Language)', () => {
@@ -56,19 +56,6 @@ describe('Typo Checking', () => {
     getByText('Tema Terang')
   })
 
-  test('expect Indonesian translation is correct (Play Music)', () => {
-    const { getByText } = render(<MockingProvider language="id" />)
-    getByText('Klik Saya! untuk')
-    getByText('Memutar Musik')
-  })
-
-  test('expect Indonesian translation is correct (Pause Music)', () => {
-    const { getByText } = render(<MockingProvider language="id" />)
-    fireEvent.click(getByText('Memutar Musik'))
-    getByText('Klik Saya! untuk')
-    getByText('Jeda Musik')
-  })
-
   test('expect English translation is correct (Change Language)', () => {
     const { getByText, getAllByText } = render(<MockingProvider language="en" />)
     getAllByText('Click Me! to change')
@@ -83,19 +70,6 @@ describe('Typo Checking', () => {
   test('expect English translation is correct (Dark Mode)', () => {
     const { getByText } = render(<MockingProvider language="en" darkMode={true} />)
     getByText('Light Theme')
-  })
-
-  test('expect English translation is correct (Play Music)', () => {
-    const { getByText } = render(<MockingProvider language="en" />)
-    getByText('Click Me! to')
-    getByText('Play Music')
-  })
-
-  test('expect English translation is correct (Pause Music)', () => {
-    const { getByText } = render(<MockingProvider language="en" />)
-    fireEvent.click(getByText('Play Music'))
-    getByText('Click Me! to')
-    getByText('Pause Music')
   })
 
 })

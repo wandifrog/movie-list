@@ -1,6 +1,10 @@
 const movieListTranslation = {
   id: {
     /**
+     * - ID: Tutup
+     */
+    close: 'Tutup',
+    /**
      * - ID: Masukan judul film
      */
     inputPlaceholder: 'Masukan judul film',
@@ -10,6 +14,10 @@ const movieListTranslation = {
     loading: 'Memuat...',
   },
   en: {
+    /**
+     * - EN: Tutup
+     */
+    close: 'Close',
     /**
      * - EN: Enter movie title
      */

@@ -15,7 +15,7 @@ type PTextProps = ComponentMetrics & React.HTMLAttributes<HTMLDivElement> & {
    */
   center?: boolean
   /**
-   * onClick event
+   * On click event
    */
   onClick?: () => void
   /**
