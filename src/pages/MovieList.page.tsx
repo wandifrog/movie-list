@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { WheelEvent } from 'react'
 import styled from '@emotion/styled'
 import { fontSize } from '../constants/Fonts.constant'
 import useTheme from '../hooks/Theme.hook'
@@ -9,7 +9,7 @@ import PText from '../components/PText'
 
 const outsideState = {
   modalImage: '',
-  pages: 1,
+  page: 1,
   typingTimeout: setTimeout(() => { }, 0),
 }
 
@@ -23,9 +23,17 @@ const MovieList = (): JSX.Element => {
   const [showModal, setShowModal] = React.useState(false)
   const [suggestion, setSuggestion] = React.useState<Movie[]>([])
 
-  function _getMovies(query: string): Promise<Movie[]> {
+  React.useEffect(() => { 
+    // component did mount
+
+    return () => { // component will unmount
+      outsideState.page = 1
+    }
+  }, [])
+
+  const _getMovies = (query: string, page = 1): Promise<Movie[]> => {
     return new Promise((resolve, reject) => {
-      const url = `https://www.omdbapi.com/?apikey=db0562f2&s=${query}`
+      const url = `https://www.omdbapi.com/?apikey=db0562f2&s=${query}&page=${page}`
       fetch(url)
         .then((response) => response.json())
         .then((data: MovieResult) => {
@@ -33,13 +41,13 @@ const MovieList = (): JSX.Element => {
           data.Response === 'True' ? resolve(data.Search) : reject(data.Error)
         })
         .catch((err) => reject(err))
-    }) 
+    })
   }
 
-  function _handleTyping(query: string) {
+  const _handleTyping = (query: string) => {
+    clearTimeout(outsideState.typingTimeout)
     setSearchValue(query)
     setSuggestion([])
-    clearTimeout(outsideState.typingTimeout)
 
     if (query.length < 3) return
 
@@ -47,33 +55,49 @@ const MovieList = (): JSX.Element => {
       try {
         const result = await _getMovies(query)
         setSuggestion(result)
-      } catch (error) {}
+      } catch (error) { 
+        alert(error) 
+      }
     }, 700)
   }
 
-  function _handleClickSuggestion(query: string) {
+  const _handleClickSuggestion = (query: string) => {
     setSearchValue(query)
     _handleSearch()
   }
 
-  async function _handleSearch() {
+  const _handleSearch = async() => {
+    clearTimeout(outsideState.typingTimeout)
     setMovies([])
     setSuggestion([])
     setLoading(true)
     try {
       const result: Movie[] = await _getMovies(searchValue)
       setMovies(result)
-      
     } catch (error) {
       alert(error)
     }
     setLoading(false)
   }
 
-  // console.log('RENDER', suggestion)
+  const _handleOnScroll = async(el: React.UIEvent<HTMLDivElement>) => {
+    setLoading(true)
+    const { offsetHeight, scrollTop, scrollHeight } = el.currentTarget
+
+    if (scrollTop + 10 >= scrollHeight - offsetHeight) {
+      outsideState.page++
+      try {
+        const result = await _getMovies(searchValue, outsideState.page)
+        setMovies([...movies, ...result])
+      } catch (error) {
+        setLoading(false)
+        alert(error)
+      }
+    }
+  }
 
   return (
-    <Content>
+    <Content onScroll={(el) => _handleOnScroll(el)}>
       <PModal visible={showModal}>
         <PText>test 123</PText>
       </PModal>
@@ -90,11 +114,11 @@ const MovieList = (): JSX.Element => {
         {
           suggestion.length !== 0 && suggestion.map((movie, index) =>
             (
-              <PText 
-                key={index} 
-                top="10px" 
-                bottom="10px" 
-                size={fontSize.normal} 
+              <PText
+                key={index}
+                top="10px"
+                bottom="10px"
+                size={fontSize.normal}
                 center
                 onClick={() => _handleClickSuggestion(movie.Title)}
               >
@@ -103,42 +127,11 @@ const MovieList = (): JSX.Element => {
             )
           )
         }
-
       </AutoCompleteContainer>
       {
         movies.map((movie, index) =>
           (
-            <HStack key={index} justify="space-between">
-              <PText>{movie.Title}</PText>
-              <PText>{movie.Year}</PText>
-            </HStack>
-          )
-        )
-      }
-      {
-        movies.map((movie, index) =>
-          (
-            <HStack key={index} justify="space-between">
-              <PText>{movie.Title}</PText>
-              <PText>{movie.Year}</PText>
-            </HStack>
-          )
-        )
-      }
-      {
-        movies.map((movie, index) =>
-          (
-            <HStack key={index} justify="space-between">
-              <PText>{movie.Title}</PText>
-              <PText>{movie.Year}</PText>
-            </HStack>
-          )
-        )
-      }
-      {
-        movies.map((movie, index) =>
-          (
-            <HStack key={index} justify="space-between">
+            <HStack top="50px" key={index} justify="space-between">
               <PText>{movie.Title}</PText>
               <PText>{movie.Year}</PText>
             </HStack>
@@ -153,11 +146,11 @@ const MovieList = (): JSX.Element => {
 }
 
 const Content = styled.div`
-  padding: 0 12px 12px;
   height: calc(100% - 137px);
   overflow: scroll;
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  padding: 0 12px 12px;
+  -ms-overflow-style: none;  /* IE and Edge scrollbar */
+  scrollbar-width: none;  /* Firefox scrollbar */
 
   /* Hide scrollbar for Chrome, Safari and Opera */
   &::-webkit-scrollbar {
@@ -165,24 +158,23 @@ const Content = styled.div`
   }
 `
 const AutoCompleteContainer = styled.div`
-position: absolute;
-left: 0;
-z-index: 10;
-  width: 100%;
-  /* background-color: white; */
-  margin: 0 auto;
   background-color: ${(props) => props.color};
+  left: 0;
+  margin: 0 auto;
+  position: absolute;
+  width: 100%;
+  z-index: 10;
 `
 const PokemonNameInput = styled.input`
   background: transparent;
+  color: ${(props) => props.color};
   display: flex;
   height: 30px;
   margin: 0 auto;
-  padding: 0 10px;
-  width: 100%;
-  text-align: center;
-  color: ${(props) => props.color};
   outline: none;
+  padding: 0 10px;
+  text-align: center;
+  width: 100%;
   
   &::placeholder {
     color: ${(props) => props.color};

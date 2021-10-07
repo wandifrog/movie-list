@@ -83,7 +83,7 @@ const PText = ({
       style: textStyle,
       ...props,
     },
-    children,
+    children
   )
 
   // return span === true

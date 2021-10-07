@@ -3,7 +3,7 @@ import React from 'react'
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
+  Route
 } from 'react-router-dom'
 import PBottomNavigation from './components/PBottomNavigation'
 import PFancyHeader from './components/PFancyHeader'
