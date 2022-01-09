@@ -5,7 +5,7 @@ import useApp from './App.hook'
 
 function useTranslation() {
   const [state] = useApp()
-  const { language } = state
+  const {language} = state
 
   const t = {
     global: globalTranslation[language],
@@ -13,7 +13,7 @@ function useTranslation() {
     movieList: movieListTranslation[language],
   }
 
-  return { t, language }
+  return {t, language}
 }
 
 export default useTranslation

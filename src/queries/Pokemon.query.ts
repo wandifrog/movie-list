@@ -1,4 +1,4 @@
-import { ApolloClient, InMemoryCache, gql, ApolloQueryResult } from '@apollo/client'
+import {ApolloClient, InMemoryCache, gql, ApolloQueryResult} from '@apollo/client'
 
 const pokeApi = 'https://graphql-pokeapi.vercel.app/api/graphql'
 

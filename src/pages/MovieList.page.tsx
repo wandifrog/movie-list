@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { fontFamily, fontSize } from '../constants/Fonts.constant'
+import {fontFamily, fontSize} from '../constants/Fonts.constant'
 import useTheme from '../hooks/Theme.hook'
 import useTranslation from '../hooks/Translation.hook'
 import HStack from '../components/HStack'
@@ -13,7 +13,7 @@ const outsideState = {
 }
 
 const MovieList = (): JSX.Element => {
-  const { t } = useTranslation()
+  const {t} = useTranslation()
   const colors = useTheme()
 
   const [loading, setLoading] = React.useState(false)
@@ -72,7 +72,7 @@ const MovieList = (): JSX.Element => {
   }
 
   const _handleOnScroll = async(el: React.UIEvent<HTMLDivElement>) => {
-    const { offsetHeight, scrollTop, scrollHeight } = el.currentTarget
+    const {offsetHeight, scrollTop, scrollHeight} = el.currentTarget
     if (scrollTop + 100 >= scrollHeight - offsetHeight) {
       const page = Math.ceil(movies.length / 10) + 1
       const result = await _getMovies(searchValue, page)

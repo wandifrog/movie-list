@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
-import { keyframes } from '@emotion/react'
-import { images } from '../constants/Images.constant'
+import {keyframes} from '@emotion/react'
+import {images} from '../constants/Images.constant'
 
 /**
  * Pokemon bouncing ball.

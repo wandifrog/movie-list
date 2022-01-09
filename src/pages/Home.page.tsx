@@ -1,21 +1,21 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import Text from '../components/Text'
-import { fontFamily, fontSize } from '../constants/Fonts.constant'
+import {fontFamily, fontSize} from '../constants/Fonts.constant'
 import useApp from '../hooks/App.hook'
 import useTranslation from '../hooks/Translation.hook'
 import HStack from '../components/HStack'
 
 const Home = (): JSX.Element => {
   const [state, dispatch] = useApp()
-  const { t, language } = useTranslation()
+  const {t, language} = useTranslation()
 
   const _changeTheme = () => {
-    dispatch({ type: 'CHANGE_THEME' })
+    dispatch({type: 'CHANGE_THEME'})
   }
 
   const _changeLanguage = () => {
-    dispatch({ type: 'CHANGE_LANGUAGE' })
+    dispatch({type: 'CHANGE_LANGUAGE'})
   }
 
   const _goToStockCalculator = () => {

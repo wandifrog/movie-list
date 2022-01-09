@@ -1,7 +1,7 @@
 import React from 'react'
 import * as CSS from 'csstype'
-import { ComponentMetrics } from '../types/Component'
-import { fontSize } from '../constants/Fonts.constant'
+import {ComponentMetrics} from '../types/Component'
+import {fontSize} from '../constants/Fonts.constant'
 import useTheme from '../hooks/Theme.hook'
 
 type TextProps = ComponentMetrics & React.HTMLAttributes<HTMLDivElement> & {

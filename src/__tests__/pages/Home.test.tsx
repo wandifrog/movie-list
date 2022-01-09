@@ -1,7 +1,7 @@
 import React from 'react'
-import { render } from '@testing-library/react'
+import {render} from '@testing-library/react'
 import Home from '../../pages/Home.page'
-import { AppDispatchContext, AppStateContext, appReducer } from '../../contexts/App.context'
+import {AppDispatchContext, AppStateContext, appReducer} from '../../contexts/App.context'
 
 type MockingProviderProps = {
   darkMode?: boolean
@@ -32,43 +32,43 @@ const MockingProvider = ({
 
 describe('Typo Checking', () => {
   test('expect hardcode text is correct', () => {
-    const { getByText } = render(<MockingProvider />)
+    const {getByText} = render(<MockingProvider />)
     getByText('Github')
     getByText('LinkedIn')
     getByText('#StockCalculator')
   })
 
   test('expect Indonesian translation is correct (Change Language)', () => {
-    const { getByText } = render(<MockingProvider language="id" />)
+    const {getByText} = render(<MockingProvider language="id" />)
     getByText('Klik Saya! untuk mengubah ke')
     getByText('English')
   })
 
   test('expect Indonesian translation is correct (Light Mode)', () => {
-    const { getByText } = render(<MockingProvider language="id" darkMode={false} />)
+    const {getByText} = render(<MockingProvider language="id" darkMode={false} />)
     getByText('Klik Saya! untuk mengubah')
     getByText('Tema Gelap')
   })
 
   test('expect Indonesian translation is correct (Dark Mode)', () => {
-    const { getByText } = render(<MockingProvider language="id" darkMode={true} />)
+    const {getByText} = render(<MockingProvider language="id" darkMode={true} />)
     getByText('Klik Saya! untuk mengubah')
     getByText('Tema Terang')
   })
 
   test('expect English translation is correct (Change Language)', () => {
-    const { getByText, getAllByText } = render(<MockingProvider language="en" />)
+    const {getByText, getAllByText} = render(<MockingProvider language="en" />)
     getAllByText('Click Me! to change')
     getByText('Bahasa')
   })
 
   test('expect English translation is correct (Light Mode)', () => {
-    const { getByText } = render(<MockingProvider language="en" darkMode={false} />)
+    const {getByText} = render(<MockingProvider language="en" darkMode={false} />)
     getByText('Dark Theme')
   })
 
   test('expect English translation is correct (Dark Mode)', () => {
-    const { getByText } = render(<MockingProvider language="en" darkMode={true} />)
+    const {getByText} = render(<MockingProvider language="en" darkMode={true} />)
     getByText('Light Theme')
   })
 
